@@ -24,7 +24,18 @@ public class MyBuilder implements PlotBuilder{
 
     public ArrayList<Pair<Integer, Integer>> functionLoader(File file) throws IOException {
 
+        String sCurrentLine;
 
+        ArrayList<Pair<Integer,Integer>> arrayList = new ArrayList<Pair<Integer, Integer>>();
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        while ((sCurrentLine = br.readLine()) != null) {
+            String[] arr = sCurrentLine.split("\t");
+            arrayList.add(new Pair <Integer, Integer>(Integer.parseInt(arr[0]),Integer.parseInt(arr[1])));
+        }
+        System.out.println(arrayList);
+        br.close();
+        return arrayList;
     }
 
     public void plotPainter(ArrayList<Pair<Integer, Integer>> function, JPanel panel) {
