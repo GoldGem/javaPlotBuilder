@@ -39,6 +39,15 @@ public class MyBuilder implements PlotBuilder{
     }
 
     public void plotPainter(ArrayList<Pair<Integer, Integer>> function, JPanel panel) {
-
+        LineChart<Number, Number> chart = null;
+        chart.getData().clear();
+        XYChart.Series series = new XYChart.Series();
+//        for (int i = 0; i < function.size(); i++) {
+//            series.getData().add(new XYChart.Data(function[i].getKey, function[i].getValue));
+//        }
+        for (Pair<Integer, Integer> item: function) {
+            series.getData().add(new XYChart.Data(item.getKey(), item.getValue()));
+        }
+        chart.getData().add(series);
     }
 }
