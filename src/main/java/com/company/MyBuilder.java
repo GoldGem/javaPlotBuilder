@@ -1,18 +1,19 @@
+package com.company;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.util.Pair;
 
-import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class MyBuilder implements PlotBuilder{
+public class MyBuilder implements PlotBuilder {
     public void functionGenerator(File file) throws FileNotFoundException {
         int a;
         int b;
         PrintWriter out = new PrintWriter(file);
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 100; i++) {
             a = (int)(Math.random() * 100);
             b = (int)(Math.random() * 100);
 
@@ -38,16 +39,14 @@ public class MyBuilder implements PlotBuilder{
         return arrayList;
     }
 
-    public void plotPainter(ArrayList<Pair<Integer, Integer>> function, JPanel panel) {
-        LineChart<Number, Number> chart = null;
-        chart.getData().clear();
-        XYChart.Series series = new XYChart.Series();
+    public XYChart.Series plotPainter(ArrayList<Pair<Integer, Integer>> function, XYChart.Series series) {
 //        for (int i = 0; i < function.size(); i++) {
 //            series.getData().add(new XYChart.Data(function[i].getKey, function[i].getValue));
 //        }
         for (Pair<Integer, Integer> item: function) {
             series.getData().add(new XYChart.Data(item.getKey(), item.getValue()));
         }
-        chart.getData().add(series);
+        return series;
+
     }
 }
